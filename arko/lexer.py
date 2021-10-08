@@ -28,7 +28,7 @@ t_A_SYMBOL = 'a'
 t_B_SYMBOL = 'b'
 t_I_SYMBOL = 'i'
 t_N_SYMBOL = 'N'
-t_O_SYMBOL = 'O'
+t_O_SYMBOL = 'O'  # TODO https://github.com/jqr/php-serialize/blob/e23fcfde2bf6e05d257c6db7e142e3ae2ec9568e/lib/php_serialize.rb#L55-L57
 t_S_SYMBOL = 's'
 
 

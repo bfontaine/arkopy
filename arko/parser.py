@@ -5,9 +5,6 @@ from collections import OrderedDict
 
 from .lexer import tokens, lex
 
-if False:
-    tokens
-
 # a:4:{s:4:"date";s:10:"2019-12-29";s:10:"type_fonds";s:11:"arko_seriel";s:4:"ref1";i:12;s:4:"ref2";i:4669;}
 
 start = 'expression'
