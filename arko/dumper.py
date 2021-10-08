@@ -7,13 +7,19 @@ def dump(value):
     if isinstance(value, int):
         return "i:%d" % value
 
+    if isinstance(value, float):
+        return "d:%f" % value
+
     if isinstance(value, str):
-        return 's:%d:"%s"' % (len(value), value)
+        return 's:%d:"%s"' % (len(value), value.replace('\\', '\\\\').replace('"', '\\"'))
 
     if value is None:
         return 'N'
 
-    if isinstance(value, dict):
+    if isinstance(value, (dict, list, tuple)):
         size = len(value)
-        expressions = [dump(expression) for k, v in value.items() for expression in [k, v]]
+
+        kvs = value.items() if isinstance(value, dict) else enumerate(value)
+        expressions = [dump(expression) for k, v in kvs for expression in [k, v]]
+
         return "a:%d:{%s;}" % (size, ";".join(expressions))

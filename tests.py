@@ -16,7 +16,18 @@ class ArkoTest(unittest.TestCase):
         self.assertEqual('s:4:"abcd"', arko.dump("abcd"))
         self.assertEqual('N', arko.dump(None))
 
-    def test_roundtrip(self):
+    def test_round_trips(self):
+        for value in (
+                -10, 0, 123,
+                3.14, -2.0,
+                True, False,
+                None,
+                "hello", "some\"special'chars:",
+                {"foo": 42, "bar": True},
+        ):
+            self.assertEqual(value, arko.parse(arko.dump(value)), value)
+
+    def test_b64round_trips(self):
         # real-life payloads
         for payload in (
                 ("YTo0OntzOjQ6ImRhdGUiO3M6MTA6IjIwMTktMTItMjkiO3M6MTA6In"

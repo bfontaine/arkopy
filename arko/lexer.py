@@ -5,11 +5,13 @@ import ply.lex
 tokens = (
     'A_SYMBOL',
     'B_SYMBOL',
+    'D_SYMBOL',
     'I_SYMBOL',
     'N_SYMBOL',
     'O_SYMBOL',
     'S_SYMBOL',
     'INTEGER',
+    'FLOAT',
     'STRING',
     'LEFT_BRACKET',
     'RIGHT_BRACKET',
@@ -22,19 +24,21 @@ t_SEMICOLON = ';'
 t_LEFT_BRACKET = r'\{'
 t_RIGHT_BRACKET = r'\}'
 
-t_INTEGER = r'\d+'
+t_INTEGER = r'-?\d+'
+t_FLOAT = r'-?\d+\.\d+'
 
 t_A_SYMBOL = 'a'
 t_B_SYMBOL = 'b'
+t_D_SYMBOL = 'd'
 t_I_SYMBOL = 'i'
 t_N_SYMBOL = 'N'
-t_O_SYMBOL = 'O'  # TODO https://github.com/jqr/php-serialize/blob/e23fcfde2bf6e05d257c6db7e142e3ae2ec9568e/lib/php_serialize.rb#L55-L57
+t_O_SYMBOL = 'O'
 t_S_SYMBOL = 's'
 
 
 def t_STRING(t):
-    r'"[^"]*"'
-    t.value = t.value[1:-1]
+    r'"(\\"|[^"])*"'
+    t.value = t.value[1:-1].replace('\\"', '"').replace('\\\\', '\\')
     return t
 
 
