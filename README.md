@@ -1,3 +1,3 @@
 # ArkoPy
 
-Parse and generate Arkotheque-style URL parameters.
+Parse and generate Arkothèque-style URL parameters.

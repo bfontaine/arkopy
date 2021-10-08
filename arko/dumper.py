@@ -10,8 +10,10 @@ def dump(value):
     if isinstance(value, str):
         return 's:%d:"%s"' % (len(value), value)
 
+    if value is None:
+        return 'N'
+
     if isinstance(value, dict):
         size = len(value)
-        exprs = [dump(expr) for k, v in value.items() for expr in [k, v]]
-        return "a:%d:{%s;}" % (size, ";".join(exprs))
-
+        expressions = [dump(expression) for k, v in value.items() for expression in [k, v]]
+        return "a:%d:{%s;}" % (size, ";".join(expressions))
